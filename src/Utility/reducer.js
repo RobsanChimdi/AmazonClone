@@ -26,7 +26,12 @@ export const reducer = (state, action) => {
           basket: updatedBasket
         };
       }
-
+case Type.REMOVE_FROM_BASKET:
+  const index=state.basket.findIndex(item=>item.id===action.id)
+  let nextBasket={...state.basket}
+  if(index>0){
+    
+  }
     default:
       return state;
   }

@@ -9,7 +9,7 @@ import { Type } from '../../Utility/actiontype';
 
 const ProductCard = ({ product, Description, flex, renderAdd }) => {
   const { image, title, id, rating, price, description } = product;
-  const [state, dispatch] = useContext(DataContext);
+  const [{basket}, dispatch] = useContext(DataContext);
 
   const addtocart = () => {
     dispatch({
@@ -38,6 +38,7 @@ const ProductCard = ({ product, Description, flex, renderAdd }) => {
         </div>
         {renderAdd && <button className={classes.button} onClick={addtocart}>add to cart</button>}
       </div>
+      
     </div>
   );
 };
