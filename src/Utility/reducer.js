@@ -1,7 +1,8 @@
 import { Type } from "./actiontype";
 
 export const initialState = {
-  basket: []
+  basket: [],
+  user:null
 };
 
 export const reducer = (state, action) => {
@@ -32,6 +33,11 @@ case Type.REMOVE_FROM_BASKET:
   if(index>0){
     
   }
+  case Type.SET_USER:
+    return {
+     ...state,
+     user:action.user
+    }
     default:
       return state;
   }
