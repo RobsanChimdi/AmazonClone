@@ -5,10 +5,10 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LowerHeader from './LowerHeader';
 import {Link} from "react-router-dom"
 import { DataContext } from '../Dataprovider/Dataprovider';
-
+import {auth} from "../../Utility/firebase"
 
 const Header = () => {
-const [{basket}, dispatch]=useContext(DataContext)
+const [{user, basket}, dispatch]=useContext(DataContext)
 console.log(basket?.length)
   return (
     <section className={classes.Fixed}>
@@ -35,7 +35,7 @@ console.log(basket?.length)
                     <option value="">All</option>
                 </select>
                 <input type="text" name="" id="" placeholder='made' />
-                <SearchIcon/>            
+                <SearchIcon size={38}/>            
             </div>
         
                 {/* rightsidelink */}
@@ -46,10 +46,22 @@ console.log(basket?.length)
                             <option value="">EN</option>
                         </section>
                     </a>
-                    <Link to="/auth">
+                    <Link to={user&&"/auth"}>
+                      
                         <div>
-                            <p>Sign In</p>
+                           {
+                            user?(
+                            <>
+                            <p>hello{user?.emal?.split("@")[0]}</p>
+                            <span onClick={()=>auth.signOut}>SignOut</span>
+                            </>)
+                            :(
+                            <>
+                            <p>Hello Sign In</p>
                             <span>Account & Lists</span>
+                            </>
+                            )
+                           }
                         </div>
                     </Link>
                     {/* orders */}
